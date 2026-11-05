@@ -1,4 +1,4 @@
-import { GameState, Boat, Survivor, Shark, Debris, Particle } from "../types";
+import { GameState, Boat, Survivor, Shark, Debris } from "../types";
 import { clamp, dist, randomInRange } from "./canvas";
 
 const BOAT_SPEED = 220;
@@ -62,7 +62,7 @@ export function spawnWave(state: GameState, cw: number, ch: number): void {
   const debrisCount = Math.min(wave, 8);
 
   for (let i = 0; i < survivorCount; i++) {
-    state.survivors.push(makeSurvivor(cw, ch, state));
+    state.survivors.push(makeSurvivor(cw, ch));
   }
   for (let i = 0; i < sharkCount; i++) {
     state.sharks.push(makeShark(cw, ch));
@@ -72,7 +72,7 @@ export function spawnWave(state: GameState, cw: number, ch: number): void {
   }
 }
 
-function makeSurvivor(cw: number, ch: number, state: GameState): Survivor {
+function makeSurvivor(cw: number, ch: number): Survivor {
   const margin = 60;
   const safeY = ch - 120; // keep away from dock
   return {
